@@ -3,17 +3,17 @@ cd ~/Downloads
 git clone https://github.com/Kosta554/sshapachewebsite.git
 
 # Download is klaar, nu extracten
-mkdir /var/html/www/testkosta
-
-cp ~/Downloads/sshapachewebsite/index.html /var/html/www/testkosta
+mkdir("/var/www/html/testkosta", 0777)
+cp ~/Downloads/sshapachewebsite/index.html /var/www/html/testkosta
 
 # Virtualhost toevoegen
+cd /etc/apache2/sites-available/
 
 
 # Nu nog de permissies
 
 
 # Remove zooi 
-rmdir ~/Downloads/sshapachewebsite
+rm -r ~/Downloads/sshapachewebsite
 
 
