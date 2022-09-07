@@ -1,19 +1,26 @@
 echo "De script start nu"
-cd ~/Downloads
+mkdir ~/testwebsite
+cd ~/testwebsite
 git clone https://github.com/Kosta554/sshapachewebsite.git
 
 # Download is klaar, nu extracten
 mkdir("/var/www/html/testkosta", 0777)
-cp ~/Downloads/sshapachewebsite/index.html /var/www/html/testkosta
+cp ~/testwebsite/sshapachewebsite/index.html /var/www/html/testkosta
 
 # Virtualhost toevoegen
-cd /etc/apache2/sites-available/
+cp ~/testwebsite/sshapachewebsite/testkosta.conf /etc/apache2/sites-available/
+
+sudo a2ensite testkosta.cfg
 
 
-# Nu nog de permissies
 
-
+echo "Removing junk"
 # Remove zooi 
-rm -r ~/Downloads/sshapachewebsite
+rm -r ~/testwebsite
+
+
+service apache2 reload
+echo "Complete"
+
 
 
