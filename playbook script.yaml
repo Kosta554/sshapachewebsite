@@ -1,23 +1,21 @@
-- hosts: webservers
-	vars:
-		ansible_become_password: student
-	name: this set up an httpd webserver
-	tasks:
-	- name: Install apache packages 
-		  package:
-          name: httpd
-          state: present
-          become: yes
-	- name: ensure httpd is running
-		service:
-		name: httpd 
-		state: started
-	- name: Open port 80 for http access
-		firewalld:
-		service: http
-		permanent: true
-		state: enabled
-	- name: Restart the firewalld service to load in the firewall changes
-		service: 
-		name: firewalld 
-		state: restarted
+- name: This sets up an httpd webserver
+  tasks:
+  - name: Install apache packages 
+    package:
+      name: httpd
+      state: present
+  - name: ensure httpd is running
+    service:
+      name: httpd 
+      state: started
+  - name: Open port 80 for http access
+    firewalld:
+      service: http
+      permanent: true
+      state: enabled
+  - name: Restart the firewalld service to load in the firewall changes
+    service: 
+      name: firewalld 
+      state: restarted
+  - name: Download website and script. Run after.
+    raw: cd ~/Downloads \ git clone https://github.com/Kosta554/sshapachewebsite.git \ ~/Download/sshapachewebsite/WebsiteDeploy.sh
